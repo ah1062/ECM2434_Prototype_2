@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    static Dictionary<int, GameObject> suspectObjects;
-    static int correctSuspect;
+    public Dictionary<int, GameObject> suspectObjects;
+    public static string correctSuspect;
 
     private void Awake() {
         GameObject g;
@@ -18,15 +18,13 @@ public class GameLogic : MonoBehaviour
         }
 
         SetSuspectSprites("12345");
+        SetCorrectSuspect("4");
+    }
+    public string GetCorrectSuspect() {
+        return correctSuspect;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    static void SetSuspectSprites(string sprite_codes) {
+    public void SetSuspectSprites(string sprite_codes) {
         GameObject g;
         SpriteRenderer sr;
         Sprite s;
@@ -45,15 +43,9 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    static void SetCorrectSuspect(int number) {
+    public void SetCorrectSuspect(string number) {
         if (suspectObjects != null) {
             correctSuspect = number;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

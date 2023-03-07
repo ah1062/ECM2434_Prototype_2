@@ -5,12 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Camera _mainCamera;
-    private char correctSuspect = '2';
+    GameLogic gl;
 
     // Start is called before the first frame update
     void Start()
     {
         _mainCamera = Camera.main;
+        gl = GameObject.Find("LogicObject").GetComponent<GameLogic>();
     }
 
     // Update is called once per frame
@@ -28,9 +29,10 @@ public class Player : MonoBehaviour
                 // Handle the click here
                 Debug.Log($"Clicked on {hit.collider.gameObject.name}");
 
-                if (hit.collider.gameObject.name.Contains(correctSuspect))
+                if (hit.collider.gameObject.name.Contains(gl.GetCorrectSuspect()))
                 {
                     Debug.Log("CORRECT");
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }
