@@ -17,20 +17,19 @@ public class GameLogic : MonoBehaviour
         GameObject g;
         suspectObjects = new Dictionary<string, GameObject>();
         suspectDescriptions = new Dictionary<string, string>();
-	    clues = new string[10];
 
         for (int i = 1; i <= 5; i++) {
             g = GameObject.Find(string.Format("Suspect Slot {0}", i.ToString()));
             suspectObjects.Add(string.Format("Suspect Slot {0}", i.ToString()), g);
         }
 
-      SetSuspectSprites("42315");
-      SetCorrectSuspect("1");
+//      SetSuspectSprites("42315");
+//      SetCorrectSuspect("1");
         
-      string descriptions ="CHARACTER A, CHARACTER B, CHARACTER C, CHARACTER D, CHARACTER E";
-      //SetSuspectDescriptions(descriptions);
+//      string[] descriptions = new string[5]{"CHARACTER A", "CHARACTER B", "CHARACTER C", "CHARACTER D", "CHARACTER E"};
+//      SetSuspectDescriptions(descriptions);
 
-      clues = new string[10] {"A","B","C","D","E","F","G","H","I","J"};
+//      clues = new string[10] {"A","B","C","D","E","F","G","H","I","J"};
     }
     public string GetCorrectSuspect() {
         return correctSuspect;
@@ -59,19 +58,13 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    public void SetClueDescriptions(string descriptions) {
-        string[] descriptionsList = descriptions.Split(",");
-
-	for (int i = 0; i < 10; i++) {
-	    clues[i] = descriptionsList[i];
-	}
+    public void SetClueDescriptions(string[] descriptions) {
+        clues = descriptions;
     }
 
-    public void SetSuspectDescriptions(string descriptions) {
-    	string[] descriptionsList = descriptions.Split(",");
-
+    public void SetSuspectDescriptions(string[] descriptions) {
         for (int i = 1; i <= 5; i++) {
-            suspectDescriptions.Add(string.Format("Suspect Slot {0}", i.ToString()), descriptionsList[i-1]);
+            suspectDescriptions.Add(string.Format("Suspect Slot {0}", i.ToString()), descriptions[i-1]);
         }
     }
 
